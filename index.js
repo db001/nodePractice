@@ -5,6 +5,8 @@ const path = require('path');
 const promisify = require('es6-promisify');
 
 require('dotenv').config();
+
+// Mongoose models must go before database connection
 require('./models/User');
 require('./models/Diary');
 
@@ -17,7 +19,6 @@ mongoose.promise = global.Promise // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`Mongoose connect error: ${err.message}`);
 });
-
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

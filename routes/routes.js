@@ -11,5 +11,6 @@ router.get('/', (req, res) => {
 
 router.get('/users',  userController.users);
 router.get('/diary', diaryController.diary);
+router.get('/addEntry', diaryController.addEntry);
 
 module.exports = router;
