@@ -2,11 +2,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const promisify = require('es6-promisify');
+
+require('dotenv').config();
+require('./models/User');
+
 const routes = require('./routes/routes');
 
 const app = express();
 
-require('dotenv').config();
+mongoose.connect(process.env.DB_URL);
+mongoose.promise = global.Promise // Tell Mongoose to use ES6 promises
+mongoose.connection.on('error', (err) => {
+  console.error(`Mongoose connect error: ${err.message}`);
+});
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
