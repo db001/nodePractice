@@ -6,6 +6,7 @@ const promisify = require('es6-promisify');
 
 require('dotenv').config();
 require('./models/User');
+require('./models/Diary');
 
 const routes = require('./routes/routes');
 
