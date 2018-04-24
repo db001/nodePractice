@@ -8,7 +8,6 @@ require('dotenv').config();
 
 // Mongoose models must go before database connection
 require('./models/User');
-require('./models/Diary');
 
 const routes = require('./routes/routes');
 
