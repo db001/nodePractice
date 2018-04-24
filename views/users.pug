@@ -2,4 +2,7 @@ extends layout
 
 block content
     each user in users
-        p #{user.name}
+        h6 #{user.name}
+        each entry in user.entries
+            p #{entry.date}
+            p #{entry.text}

@@ -14,7 +14,17 @@ const userSchema = new Schema({
         unique: true,
         lowercase: true,
         trim: true
-    }
+    },
+    entries: [{
+        date: {
+            type: Date,
+            default: Date.now()
+        },
+        text: {
+            type: String,
+            trim: true
+        }        
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);
