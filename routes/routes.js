@@ -8,8 +8,12 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/users',  userController.users);
+router.get('/users', userController.users);
 
 router.get('/user/:username', userController.user);
+
+router.post('/user/:username', (req, res) => {
+  console.log(req.body);
+});
 
 module.exports = router;

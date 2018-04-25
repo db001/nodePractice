@@ -6,6 +6,7 @@ block content
       p.date #{entry.date}
       p.entry #{entry.text}
 
-    form
+    form(method="POST" action="/")
       label(for="description") New entry
-        textarea(name="description", cols="30", rows="10")
+      textarea(name="description", cols="30", rows="10")
+      input(type="submit" value="Add entry")
