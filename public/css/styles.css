@@ -6,3 +6,6 @@ body {
 .date {
   font-size: 0.8rem;
 }
+.nav a {
+  padding-right: 10px;
+}
