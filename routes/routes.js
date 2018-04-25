@@ -10,4 +10,6 @@ router.get('/', (req, res) => {
 
 router.get('/users',  userController.users);
 
+router.get('/user/:username', userController.user);
+
 module.exports = router;

@@ -6,3 +6,9 @@ exports.users = async  (req, res) => {
     const users = await User.find();
     res.render('users', { title: "Users", users });
 };
+
+exports.user = async (req, res) => {
+    const user = await User.findOne({ name: req.params.username });
+    console.log(user);
+    res.render('user', { title: `${user.name}`, user });
+}

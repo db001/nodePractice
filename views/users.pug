@@ -2,7 +2,5 @@ extends layout
 
 block content
     each user in users
-        h4 #{user.name}
-        each entry in user.entries
-            p.date #{entry.date}
-            p.entry #{entry.text}
+        h4
+            a(href=`http://localhost:7878/user/${user.name}`) #{user.name} 
