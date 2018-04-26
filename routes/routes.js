@@ -12,8 +12,6 @@ router.get('/users', userController.users);
 
 router.get('/user/:username', userController.user);
 
-router.post('/user/:username', (req, res) => {
-  console.log(req.body);
-});
+router.post('/user/:username', userController.addEntry);
 
 module.exports = router;
