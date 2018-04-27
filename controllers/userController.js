@@ -12,7 +12,7 @@ exports.user = async (req, res) => {
     res.render('user', { title: `${user.name}`, user });
 }
 
-exports.addEntry = async (req, res) => {
+exports.addEntry = async (req, res, next) => {
     console.log(req.body.description);
     const user = await User.findOneAndUpdate(
         // Find user that matches username
@@ -28,6 +28,6 @@ exports.addEntry = async (req, res) => {
         },
         { new: true }
     );
-    console.log(user);
-    res.redirect(`/user/${user.name}`);
+    // console.log(user);
+    next();
 }

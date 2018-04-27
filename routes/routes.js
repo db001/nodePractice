@@ -12,6 +12,9 @@ router.get('/users', userController.users);
 
 router.get('/user/:username', userController.user);
 
-router.post('/user/:username', userController.addEntry);
+router.post('/user/:username',
+  userController.addEntry,
+  userController.user
+);
 
 module.exports = router;

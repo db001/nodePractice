@@ -9,3 +9,18 @@ body {
 .nav a {
   padding-right: 10px;
 }
+.entryContainer {
+  padding: 10px;
+  border: 1px solid grey;
+  width: 60%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.newEntry {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.newEntry > input[type='submit'] {
+  width: 100px;
+}

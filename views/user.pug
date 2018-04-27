@@ -3,10 +3,11 @@ extends layout
 block content
     h3 #{user.name}
     each entry in user.entries
-      p.date #{entry.date}
-      p.entry #{entry.text}
+      .entryContainer
+        p.date #{entry.date}
+        p.entry #{entry.text}
 
-    form(method="POST")
+    form.newEntry(action=`/users/` method="POST")
       label(for="description") New entry
       textarea(name="description", cols="30", rows="10")
       input(type="submit" value="Add entry")
