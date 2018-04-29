@@ -23,7 +23,7 @@ const userSchema = new Schema({
         text: {
             type: String,
             trim: true
-        }        
+        }
     }]
 });
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
 
-exports.users = async  (req, res) => {
+exports.users = async (req, res) => {
     const users = await User.find();
     res.render('users', { title: "Users", users });
 };
@@ -10,24 +10,26 @@ exports.users = async  (req, res) => {
 exports.user = async (req, res) => {
     const user = await User.findOne({ name: req.params.username });
     res.render('user', { title: `${user.name}`, user });
-}
+};
 
-exports.addEntry = async (req, res, next) => {
-    console.log(req.body.description);
+exports.addEntry = async (req, res) => {
+    console.log('Add entry');
     const user = await User.findOneAndUpdate(
         // Find user that matches username
         { name: req.params.username },
         // Update entries
-        { $push:
-            { "entries":
+        {
+            $push:
                 {
-                    date: `${Date.now}`,
-                    text: req.body.description
+                    "entries":
+                        {
+                            date: Date.now(),
+                            text: req.body.description
+                        }
                 }
-            }
         },
         { new: true }
     );
     // console.log(user);
-    next();
-}
+    res.render('user', { title: `${user.name}`, user });
+};
