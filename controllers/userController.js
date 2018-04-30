@@ -14,6 +14,9 @@ exports.user = async (req, res) => {
 
 exports.addEntry = async (req, res) => {
     console.log('Add entry');
+    if(req.body.description == "") {
+        return;
+    }
     const user = await User.findOneAndUpdate(
         // Find user that matches username
         { name: req.params.username },
@@ -30,6 +33,11 @@ exports.addEntry = async (req, res) => {
         },
         { new: true }
     );
-    // console.log(user);
     res.render('user', { title: `${user.name}`, user });
 };
+
+// exports.deleteEntry = async (req, res) => {
+//     console.log('Delete');
+
+//     res.render('user', { title: `${user.name}`, user });    
+// }
