@@ -1,3 +1,5 @@
+import { runInNewContext } from 'vm';
+
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
@@ -12,7 +14,7 @@ exports.user = async (req, res) => {
     res.render('user', { title: `${user.name}`, user });
 };
 
-exports.addEntry = async (req, res) => {
+exports.addEntry = async (req, res, next) => {
     console.log('Add entry');
     if(req.body.description == "") {
         return;
@@ -33,11 +35,22 @@ exports.addEntry = async (req, res) => {
         },
         { new: true }
     );
-    res.render('user', { title: `${user.name}`, user });
+    next();
 };
 
-// exports.deleteEntry = async (req, res) => {
-//     console.log('Delete');
-
-//     res.render('user', { title: `${user.name}`, user });    
-// }
+exports.deleteEntry = async (req, res, next) => {
+    console.log(req.params.id);
+    const user = await User.findOneAndUpdate(
+        { name: req.params.username },
+        {
+            $pull: 
+                {
+                    "entries":
+                        {
+                            _id: req.params.id
+                        }
+                }
+        }
+    );
+    next();   
+}

@@ -1,11 +1,19 @@
 const deleteBtn = [...document.querySelectorAll('.deleteBtn')];
 
-console.log(deleteBtn);
+const xhr = new XMLHttpRequest();
 
 deleteBtn.map(btn => {
   btn.addEventListener('click', function(e) {
-    console.log(e.target.parentElement.id);
-  })
+    const id = e.target.parentElement.id;
+    const path = window.location.pathname;
+    const url = `http://localhost:7878${path}/${id}`;
+
+    xhr.open("DELETE", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      id
+    }));
+  });
 });
 
 /*
