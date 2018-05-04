@@ -12,8 +12,7 @@ exports.user = async (req, res) => {
     res.render('user', { title: `${user.name}`, user });
 };
 
-exports.addEntry = async (req, res, next) => {
-    console.log('Add entry');
+exports.addEntry = async (req, res) => {
     if(req.body.description == "") {
         return;
     }
@@ -36,8 +35,8 @@ exports.addEntry = async (req, res, next) => {
     res.redirect(`/user/${req.params.username}`);
 };
 
-exports.deleteEntry = async (req, res, next) => {
-    console.log(req.params.id);
+exports.deleteEntry = async (req, res) => {
+    console.log(req.params);
     const user = await User.findOneAndUpdate(
         { name: req.params.username },
         {
@@ -48,7 +47,8 @@ exports.deleteEntry = async (req, res, next) => {
                             _id: req.params.id
                         }
                 }
-        }
+        },
+        { new: true }
     );
-    next();   
+    res.redirect(`/user/${req.params.username}`);
 }

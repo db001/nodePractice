@@ -6,13 +6,11 @@ deleteBtn.map(btn => {
   btn.addEventListener('click', function(e) {
     const id = e.target.parentElement.id;
     const path = window.location.pathname;
-    const url = `http://localhost:7878${path}/${id}`;
+    const url = `http://localhost:7878${path}/deleteEntry/${id}`;
 
     xhr.open("DELETE", url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-      id
-    }));
+    xhr.send(JSON.stringify({ id }));
   });
 });
 

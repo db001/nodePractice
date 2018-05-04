@@ -13,13 +13,11 @@ router.get('/users', userController.users);
 router.get('/user/:username', userController.user);
 
 router.post('/user/:username/newPost',
-  userController.addEntry,
-  userController.user
+  userController.addEntry
 );
 
-router.delete('/user/:username/:id',
-  userController.deleteEntry,
-  userController.user
+router.delete('/user/:username/deleteEntry/:id',
+  userController.deleteEntry
 );
 
 module.exports = router;
