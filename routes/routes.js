@@ -12,7 +12,7 @@ router.get('/users', userController.users);
 
 router.get('/user/:username', userController.user);
 
-router.post('/user/:username',
+router.post('/user/:username/newPost',
   userController.addEntry,
   userController.user
 );

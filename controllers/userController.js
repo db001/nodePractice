@@ -33,7 +33,7 @@ exports.addEntry = async (req, res, next) => {
         },
         { new: true }
     );
-    next();
+    res.redirect(`/user/${req.params.username}`);
 };
 
 exports.deleteEntry = async (req, res, next) => {

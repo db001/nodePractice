@@ -8,7 +8,7 @@ block content
         p.entry #{entry.text}
         button.deleteBtn Delete
 
-    form.newEntry(action=`/user/${user.name}` method="POST")
+    form.newEntry(action=`/user/${user.name}/newPost` method="POST")
       label(for="description") New entry
       textarea(name="description", cols="30", rows="10")
       input(type="submit" value="Add entry")
