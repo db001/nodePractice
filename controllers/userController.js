@@ -13,7 +13,7 @@ exports.user = async (req, res) => {
 };
 
 exports.addEntry = async (req, res) => {
-    if(req.body.description == "") {
+    if (req.body.description == "") {
         return;
     }
     const user = await User.findOneAndUpdate(
@@ -40,7 +40,7 @@ exports.deleteEntry = async (req, res) => {
     const user = await User.findOneAndUpdate(
         { name: req.params.username },
         {
-            $pull: 
+            $pull:
                 {
                     "entries":
                         {

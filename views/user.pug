@@ -6,7 +6,7 @@ block content
       div.entryContainer(id=entry._id) 
         p.date #{entry.date}
         p.entry #{entry.text}
-        button.deleteBtn(onClick="window.location.reload()") Delete
+        button.deleteBtn Delete
 
     form.newEntry(action=`/user/${user.name}/newPost` method="POST")
       label(for="description") New entry
