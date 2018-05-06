@@ -51,4 +51,35 @@ exports.deleteEntry = async (req, res) => {
         { new: true }
     );
     res.redirect(`/user/${req.params.username}`);
-}
+};
+
+exports.login = (req, res) => {
+    res.render('login', { title: "Log in" });
+};
+
+exports.register = (req, res) => {
+    res.render('register', { title: "Register" });
+};
+
+exports.validateRegister = (req, res, next) => {
+    console.log(req.body);
+    req.sanitizeBody('name');
+    req.sanitizeBody('username');
+    req.checkBody('username', 'You must enter a username').notEmpty();
+    req.checkBody('email', 'That email is not valid').isEmail();
+    req.sanitizeBody('email').normalizeEmail({
+        remove_dots: false,
+        remove_extension: false,
+        gmail_remove_subaddress: false
+    });
+    req.checkBody('password', 'Password cannot be blank').notEmpty();
+    req.checkBody('passwordConfirm', 'Confirm password cannot be blank').notEmpty();
+    req.checkBody('passwordConfirm', 'Passwords do not match').equals(req.body.password);
+
+    const errors = req.validationErrors();
+    if (errors) {
+        req.flash('error', errors.map(err => err.msg));
+        res.render('register', { title: 'Register', body: req.body, flashes: req.flash() });
+    }
+    return;
+};

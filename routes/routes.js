@@ -20,4 +20,7 @@ router.delete('/user/:username/deleteEntry/:id',
   userController.deleteEntry
 );
 
+router.get('/login', userController.login);
+router.get('/register', userController.register);
+router.post('/register', userController.validateRegister)
 module.exports = router;

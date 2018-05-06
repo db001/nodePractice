@@ -1,0 +1,14 @@
+extend layout
+
+block content
+    form(action="/login", method="POST")
+        h2 Login
+        .registerForm
+            .registerInput                
+                label(for="email") Email:
+                input(type="email" name="email")
+            .registerInput                
+                label(for="password") Password:
+                input(type="password" name="password")
+            .registerInput        
+                button(type="submit") Submit

@@ -1,8 +1,13 @@
 const express = require('express');
+const session = require('express-session');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const path = require('path');
 const promisify = require('es6-promisify');
+const expressValidator = require('express-validator');
+const passport = require('passport');
+const flash = require('connect-flash');
 
 require('dotenv').config();
 
@@ -26,6 +31,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(expressValidator());
+
+app.use(session({
+  secret: process.env.SECRET,
+  key: process.env.KEY,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
 
 app.use('/', routes);
 
