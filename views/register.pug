@@ -6,15 +6,15 @@ block content
         .registerForm
             .registerInput                
                 label(for="username") User name:
-                input(type="text" name="username")
+                input(type="text" name="username" required)
             .registerInput                
                 label(for="email") Email:
-                input(type="email" name="email")
+                input(type="email" name="email" required)
             .registerInput                
                 label(for="password") Password:
-                input(type="password" name="password")
+                input(type="password" name="password" required)
             .registerInput                
                 label(for="passwordConfirm") Confirm password:
-                input(type="password" name="confirmPassword")
+                input(type="password" name="confirmPassword" required)
             .registerInput        
                 button(type="submit") Submit

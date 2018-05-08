@@ -21,6 +21,13 @@ router.delete('/user/:username/deleteEntry/:id',
 );
 
 router.get('/login', userController.login);
+
 router.get('/register', userController.register);
-router.post('/register', userController.validateRegister)
+
+// router.post('/register',
+//   userController.validateRegister,
+//   userController.register
+// )
+
+
 module.exports = router;

@@ -47,6 +47,12 @@ app.use(passport.session());
 
 app.use(flash());
 
+// // promisify some callback based APIs
+// app.use((req, res, next) => {
+//   req.login = promisify(req.login, req);
+//   next();
+// });
+
 app.use('/', routes);
 
 app.set('port', process.env.PORT || 3000);
