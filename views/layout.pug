@@ -11,7 +11,18 @@ html
         a(href="http://localhost:7878/") Home
         a(href="http://localhost:7878/users") Users
         a(href="http://localhost:7878/register") Register
-        a(href="http://localhost:7878/login") Login      
+        a(href="http://localhost:7878/login") Login  
+
+    block messages
+      if locals.flashes
+        .inner.inner--flashes
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}`)
+                  p.flash__text!= message
+                  button.flash__remove(onClick="this.parentElement.remove()") &times;    
         
     .content
       block content
