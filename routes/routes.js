@@ -9,21 +9,21 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/users', userController.users);
+// router.get('/users', userController.users);
 
-router.get('/user/:username', userController.user);
+// router.get('/user/:username', userController.user);
 
-router.post('/user/:username/newPost',
-  userController.addEntry
-);
+// router.post('/user/:username/newPost',
+//   userController.addEntry
+// );
 
-router.delete('/user/:username/deleteEntry/:id',
-  userController.deleteEntry
-);
+// router.delete('/user/:username/deleteEntry/:id',
+//   userController.deleteEntry
+// );
 
 router.get('/login', userController.login);
 
-router.get('/registerForm', userController.registerForm);
+router.get('/register', userController.registerForm);
 
 router.post('/register',
   userController.validateRegister,
@@ -31,6 +31,6 @@ router.post('/register',
   authController.login
 );
 
-router.post('/login', authCOntroller.login);
+router.post('/login', authController.login);
 
 module.exports = router;
