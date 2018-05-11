@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const path = require('path');
-const promisify = require('es6-promisify');
+const {promisify} = require('es6-promisify');
 const expressValidator = require('express-validator');
 const passport = require('passport');
 const flash = require('connect-flash');
+require('./handlers/passport');
 
 require('dotenv').config();
 
@@ -47,11 +48,11 @@ app.use(passport.session());
 
 app.use(flash());
 
-// // promisify some callback based APIs
-// app.use((req, res, next) => {
-//   req.login = promisify(req.login, req);
-//   next();
-// });
+// promisify some callback based APIs
+app.use((req, res, next) => {
+  req.login = promisify(req.login, req);
+  next();
+});
 
 app.use('/', routes);
 

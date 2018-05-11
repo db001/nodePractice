@@ -20,17 +20,7 @@ const userSchema = new Schema({
         trim: true,
         required: 'Please enter an email address',
         validate: [validator.isEmail, 'Invalid email address']
-    },
-    entries: [{
-        date: {
-            type: Date,
-            default: Date.now()
-        },
-        text: {
-            type: String,
-            trim: true
-        }
-    }]
+    }
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
