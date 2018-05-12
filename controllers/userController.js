@@ -20,17 +20,11 @@ const { promisify } = require('es6-promisify');
 //         // Find user that matches username
 //         { name: req.params.username },
 //         // Update entries
-//         {
-//             $push:
-//                 {
-//                     "entries":
-//                         {
-//                             date: Date.now(),
-//                             text: req.body.description
-//                         }
+//         { $push:
+//                 { "entries":
+//                         { date: Date.now(), text: req.body.description }
 //                 }
-//         },
-//         { new: true }
+//         }, { new: true }
 //     );
 //     res.redirect(`/user/${req.params.username}`);
 // };
@@ -39,16 +33,11 @@ const { promisify } = require('es6-promisify');
 //     console.log(req.params);
 //     const user = await User.findOneAndUpdate(
 //         { name: req.params.username },
-//         {
-//             $pull:
-//                 {
-//                     "entries":
-//                         {
-//                             _id: req.params.id
-//                         }
+//         { $pull:
+//                 { "entries":
+//                         { _id: req.params.id }
 //                 }
-//         },
-//         { new: true }
+//         }, { new: true }
 //     );
 //     res.redirect(`/user/${req.params.username}`);
 // };
@@ -92,6 +81,7 @@ exports.register = async (req, res, next) => {
         email: req.body.email
     });
     console.log(user);
+    // Promisify throwing error "register is not a function" using callback instead
     // const registerWithPromise = promisify(User.register, User);
     // await registerWithPromise(user, req.body.password);
     User.register(user, req.body.password, (error, user) => {
